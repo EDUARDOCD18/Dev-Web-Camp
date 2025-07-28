@@ -4,8 +4,8 @@
 <div class="header__contenedor">
     <!-- Barra de navegación -->
     <nav class="header__navegacion">
-        <a href="/registro" class="haeder__enlace">Registro</a>
-        <a href="/login" class="haeder__enlace">Iniciar Sesión</a>
+        <a href="/registro" class="header__enlace">Registro</a>
+        <a href="/login" class="header__enlace">Iniciar Sesión</a>
     </nav>
     <!-- Fin barra de nevegación -->
 
