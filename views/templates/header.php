@@ -1,5 +1,5 @@
 <!-- Cabecera -->
-<header class="header"></header>
+<header class="header">
 <!-- Contenedor de cabecera -->
 <div class="header__contenedor">
     <!-- Barra de navegación -->
