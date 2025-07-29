@@ -12,6 +12,9 @@
       url("../img/header.webp") 1x,
       url("../img/header.jpg") 1x
     );
+  background-repeat: no-repeat;
+  background-size: 400px, 400px, cover, cover;
+  background-position: top left, bottom right, center center, center center;
 
   &__contenedor {
     @include m.contenedor;
