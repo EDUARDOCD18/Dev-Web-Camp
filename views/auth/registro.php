@@ -3,25 +3,27 @@
 
     <p class="auth__texto">Crea tu cuenta en Dev Web Camp</p>
 
+    <?php require_once __DIR__ . '/../templates/alertas.php'; ?>
+
     <!-- Formulario para la creación del usuario -->
-    <form action="" class="formulario">
+    <form action="/registro" method="POST" class="formulario">
 
         <!-- Ingreso de nombre -->
         <div class="formulario__campo">
             <label for="nombre" class="formulario__label">Nombre</label>
-            <input type="text" class="formulario__input" placeholder="Ingresa tu nombre" id="nombre" name="nombre">
+            <input type="text" class="formulario__input" placeholder="Ingresa tu nombre" id="nombre" name="nombre" value="<?php echo $usuario->nombre; ?>">
         </div>
 
         <!-- Ingreso de apellido -->
         <div class="formulario__campo">
             <label for="apellido" class="formulario__label">Apellido</label>
-            <input type="text" class="formulario__input" placeholder="Ingresa tu apellido" id="apellido" name="apellido">
+            <input type="text" class="formulario__input" placeholder="Ingresa tu apellido" id="apellido" name="apellido" value="<?php echo $usuario->apellido; ?>">
         </div>
 
         <!-- Ingreso de correo -->
         <div class="formulario__campo">
             <label for="email" class="formulario__label">Correo</label>
-            <input type="email" class="formulario__input" placeholder="Ingresa tu corro electrónico" id="email" name="email">
+            <input type="email" class="formulario__input" placeholder="Ingresa tu corro electrónico" id="email" name="email" value="<?php echo $usuario->email; ?>">
         </div>
 
         <!-- Ingreso de contraseña -->
