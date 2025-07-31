@@ -1,7 +1,6 @@
 <main class="auth">
     <h2 class="auth__heading"><?php echo $titulo; ?></h2>
-
-    <p class="auth__texto">Inicio sesión en Deb Wev Camp</p>
+    <p class="auth__texto">Inicio sesión en DebWevCamp</p>
 
     <!-- Formulario para inicio de sesión -->
     <form action="" class="formulario">
