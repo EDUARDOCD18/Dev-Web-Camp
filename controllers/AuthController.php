@@ -229,7 +229,7 @@ class AuthController
 
         if (empty($usuario)) {
             // No se encontró un usuario con ese token
-            Usuario::setAlerta('error', 'Token No Válido');
+            Usuario::setAlerta('error', 'Token no Válido, la cuenta no se pudo confirmar');
         } else {
             // Confirmar la cuenta
             $usuario->confirmado = 1;
@@ -239,13 +239,13 @@ class AuthController
             // Guardar en la BD
             $usuario->guardar();
 
-            Usuario::setAlerta('exito', 'Cuenta Comprobada Correctamente');
+            Usuario::setAlerta('exito', 'Cuenta Comprobada exitosamente, ya puedes iniciar sesión');
         }
 
 
 
         $router->render('auth/confirmar', [
-            'titulo' => 'Confirma tu cuenta DevWebcamp',
+            'titulo' => 'Confirma tu cuenta DevWebCamp',
             'alertas' => Usuario::getAlertas()
         ]);
     }

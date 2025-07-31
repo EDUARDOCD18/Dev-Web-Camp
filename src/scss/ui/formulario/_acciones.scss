@@ -11,4 +11,11 @@
         font-size: 1.4rem;
         font-weight: v.$delgada;
     }
+
+    &--centrar{
+        @extend .acciones;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
 }

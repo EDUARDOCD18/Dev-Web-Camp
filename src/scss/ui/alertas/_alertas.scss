@@ -23,7 +23,7 @@
   &__exito {
     background-color: color.scale(v.$verde, $lightness: 60%);
     border-left: 0.5rem solid v.$verde;
-    color: v.$verde;
+    color: darken(v.$verde, 20%);
   }
 
   &__animar {

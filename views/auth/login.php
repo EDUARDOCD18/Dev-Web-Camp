@@ -21,9 +21,5 @@
         <input type="submit" class="formulario__submit" value="Iniciar Sesión">
     </form>
 
-    <!-- Acciones extras -->
-    <div class="acciones">
-        <a href="/registro" class="acciones__enlace">¿Aún sin cuenta? ¡Crea una!</a> <!-- Crear nueva cuenta -->
-        <a href="/olvide" class="acciones__enlace">¿Olvidaste la clave? ¡Recupérala!</a> <!-- Contraseña olvidada -->
-    </div>
+    
 </main>
