@@ -3,8 +3,10 @@
 
     <p class="auth__texto">Recupera tu acceso a Dev Web Camp</p>
 
+    <?php require_once __DIR__ . '/../templates/alertas.php'; ?>
+
     <!-- Formulario para recuperar la cuenta -->
-    <form action="" class="formulario">
+    <form action="/olvide" method="post" class="formulario">
 
         <!-- Ingreso de correo -->
         <div class="formulario__campo">

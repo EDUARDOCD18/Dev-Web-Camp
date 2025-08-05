@@ -5,6 +5,7 @@
 
     <!-- En caso de que la confirmación de la cuenta sea exitosa -->
     <?php if (isset($alertas['exito'])) { ?>
+        
         <!-- Acciones extras -->
         <div class="acciones--centrar">
             <a href="/login" class="acciones__enlace">Iniciar sesión</a> <!-- Iniciar sesión -->
