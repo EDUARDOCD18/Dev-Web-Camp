@@ -2,8 +2,10 @@
     <h2 class="auth__heading"><?php echo $titulo; ?></h2>
     <p class="auth__texto">Inicio sesión en DebWevCamp</p>
 
+    <?php require_once __DIR__ . '/../templates/alertas.php'; ?>
+
     <!-- Formulario para inicio de sesión -->
-    <form action="" class="formulario">
+    <form action="/login" method="POST" class="formulario">
 
         <!-- Ingreso de correo -->
         <div class="formulario__campo">
