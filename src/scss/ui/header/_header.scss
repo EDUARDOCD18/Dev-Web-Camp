@@ -32,15 +32,7 @@
   }
 
   &__enlace {
-    color: v.$blanco;
-    font-size: 1.4rem;
-    text-transform: uppercase;
-    font-weight: bold;
-
-    &:hover,
-    &:focus {
-      color: v.$azul;
-    }
+    @include m.enlace;
   }
 
   &__contenido {
