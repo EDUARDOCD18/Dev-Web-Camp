@@ -1,4 +1,4 @@
-<!-- ESTILOS PARA EL HEADER DEL  PANEL DE ADMINISTRACIÓN -->
+<!-- HEADER DEL  PANEL DE ADMINISTRACIÓN -->
 
 <header class="dashboard__header">
     <div class="dashboard__header-grid">
