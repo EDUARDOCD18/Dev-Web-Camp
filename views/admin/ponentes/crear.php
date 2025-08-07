@@ -7,3 +7,14 @@
         Volver
     </a>
 </div>
+
+<!-- FORMULARIO PARA AÑADIR A LOS PONENTES -->
+<div class="dashboard__formulario">
+    <?php include_once __DIR__ . '../../../templates/alertas.php' ?>
+
+    <form action="/admin/ponentes/crear" method="POST" enctype="multipart/form-data" class="formulario">
+        <?php include_once __DIR__ . '/formulario.php'; ?>
+
+        <input class="formulario__submit" type="submit" value="Registrar ponente">
+    </form>
+</div>
