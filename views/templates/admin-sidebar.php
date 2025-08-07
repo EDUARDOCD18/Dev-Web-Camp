@@ -22,7 +22,7 @@
             <span class="dashboard__menu-texto">Registrados</span>
         </a>
 
-        <a href="/admin/registrados" class="dashboard__enlace">
+        <a href="/admin/regalos" class="dashboard__enlace">
             <i class="fa-solid fa-gifts dashboard__icono"></i>
             <span class="dashboard__menu-texto">Regalos</span>
         </a>
