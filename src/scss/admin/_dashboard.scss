@@ -68,7 +68,7 @@
       300ms border-radius ease;
     border-radius: 1rem;
 
-    &:hover {
+    &:hover,&--actual {
       background-color: lighten(v.$gris-oscuro, 20);
       color: v.$blanco;
     }
