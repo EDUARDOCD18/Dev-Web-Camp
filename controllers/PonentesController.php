@@ -26,20 +26,24 @@ class PonentesController
             # Leer imagen
             if (!empty($_FILES['imagen']['tmp_name'])) {
 
-                $carperta_imagenes = '../public/img/speakers';
+                $carpeta_imagenes = '../public/img/speakers';
 
                 // Crear la carpeta si no existe
-                if (!is_dir($carperta_imagenes)) {
-                    mkdir($carperta_imagenes, 0777, true);
-
-                    $imagen_png = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 800)->encode('png', 80);
-                    $imagen_webp = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 800)->encode('webp', 80);
-
-                    $nombre_imagen = md5(uniqid(rand(), true));
-
-                    $_POST['imagen'] = $nombre_imagen;
+                if (!is_dir($carpeta_imagenes)) {
+                    mkdir($carpeta_imagenes, 0755, true);
                 }
+
+                $imagen_png = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 800)->encode('png', 80);
+                $imagen_webp = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 800)->encode('webp', 80);
+
+                $nombre_imagen = md5(uniqid(rand(), true));
+
+                $_POST['imagen'] = $nombre_imagen;
             }
+
+            # Colocar las redes como un string
+            $_POST['redes'] = json_encode($_POST['redes'], JSON_UNESCAPED_SLASHES);
+
 
             $ponente->sincronizar($_POST);
 
@@ -47,7 +51,18 @@ class PonentesController
             $alertas = $ponente->validar();
 
             // Guardar el registro
+            if (empty($alertas)) {
+                // Buscar las imágenes
+                $imagen_png->save($carpeta_imagenes . '/' . $nombre_imagen . ".png");
+                $imagen_webp->save($carpeta_imagenes . '/' . $nombre_imagen . ".webp");
 
+                // Guardar registro en la base de datos
+                $resultado = $ponente->guardar();
+
+                if ($resultado) {
+                    header('Location: /admin/ponentes');
+                }
+            }
         }
 
         $router->render('admin/ponentes/crear', [
