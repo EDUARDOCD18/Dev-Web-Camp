@@ -4,7 +4,7 @@
 
     <!-- Nombre del ponente -->
     <div class="formulario__campo">
-        <label for="nombre" class="formulario__label">Ricardo:</label>
+        <label for="nombre" class="formulario__label">Nombre:</label>
         <input type="text" class="formulario__input" id="nombre" placeholder="Nombre del ponente" name="nombre" value="<?php echo $ponente->nombre ?? ''; ?>">
     </div>
 
