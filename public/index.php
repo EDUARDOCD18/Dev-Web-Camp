@@ -39,8 +39,14 @@ $router->get('/admin/dashboard', [DashboardController::class, 'index']);
 
 /* PONENTES */
 $router->get('/admin/ponentes', [PonentesController::class, 'index']);
+
+# Crear un ponente
 $router->get('/admin/ponentes/crear', [PonentesController::class, 'crear']);
 $router->post('/admin/ponentes/crear', [PonentesController::class, 'crear']);
+
+# Editar un ponente
+$router->get('/admin/ponentes/editar', [PonentesController::class, 'editar']);
+$router->post('/admin/ponentes/editar', [PonentesController::class, 'editar']);
 
 
 $router->get('/admin/eventos', [EventosController::class, 'index']);
