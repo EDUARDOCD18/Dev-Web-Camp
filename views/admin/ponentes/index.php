@@ -16,7 +16,7 @@
         <!-- Tabla para mostrar los ponenetes -->
         <table class="table">
             <!-- Cabecera de la tabla -->
-            <thead>
+            <thead class="table__thead">
                 <tr>
                     <th class="table_th" scope="col">Nombre</th>
                     <th class="table_th" scope="col">Ubicación</th>
@@ -39,19 +39,20 @@
                             <?php echo $ponente->ciudad . ", " . $ponente->pais; ?>
                         </td>
 
-                        <!-- Editar al ponente -->
-                        <td class="table__td--acciones">
-                            <a href="/admin/ponentes/editar?id=<?php echo $ponente->id; ?>">
-                                <fa-user-pen class="fa-solid fa-user-pen">
-                                    Editar
-                            </a>
+                        <form action="" class="table__formulario">
+                            <!-- Editar al ponente -->
+                            <td class="table__td--acciones">
+                                <a class="table__accion table__accion--editar" href="/admin/ponentes/editar?id=<?php echo $ponente->id; ?>">
+                                    <fa-user-pen class="fa-solid fa-user-pen">
+                                        Editar
+                                </a>
 
-                            <!-- Eliminar al ponente -->
-                            <form action="" class="table__formulario">
-                                <button type="submit">
+                                <!-- Eliminar al ponente -->
+
+                                <button class="table__accion table__accion--eliminar" type="submit">
                                     <i class="fa-solid fa-circle-xmark"></i>
                                     Eliminar</button>
-                            </form>
+                        </form>
                         </td>
                     </tr>
                 <?php } ?>
