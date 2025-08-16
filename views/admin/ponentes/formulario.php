@@ -32,6 +32,17 @@
         <label for="imagen" class="formulario__label">Imagen:</label>
         <input type="file" class="formulario__input formulario__input--file" id="imagen" name="imagen">
     </div>
+
+    <?php if (isset($ponente->imagen_actual)) { ?>
+        <p class="fomrulario__imagen">Imagen actual</p>
+        <div class="formulario__imagen">
+            <picture>
+                <source srcset="<?php echo $_ENV['HOST'] . '/img/speakers/' . $ponente->imagen; ?>.webp" type="image/webp">
+                <source srcset="<?php echo $_ENV['HOST'] . '/img/speakers/' . $ponente->imagen; ?>.png" type="image/png">
+                <img src="<?php echo $_ENV['HOST'] . '/img/speakers/' . $ponente->imagen; ?>.png" alt="imagen ponenete">
+            </picture>
+        </div>
+    <?php } ?>
 </fieldset>
 
 <!-- INFORMACIÓN EXTRA DEL PONETE -->
