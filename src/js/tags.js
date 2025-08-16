@@ -4,7 +4,14 @@
   if (tagsInput) {
     const tagsDiv = document.querySelector("#tags");
     const tagsInputHidden = document.querySelector('[name="tags"]');
+
     let tags = [];
+
+    /* Recuperar del input oculto */
+    if (tagsInputHidden.value !== "") {
+      tags = tagsInputHidden.value.split(",");
+      mosrtrarTags()
+    }
 
     /* Escuchar los cambios en el input */
     tagsInput.addEventListener("keypress", guardarTag);
@@ -45,11 +52,10 @@
     }
 
     /* FUNCIÓN PARA ELIMINAR LA ETIQUETA */
-    function eliminarTag(e){
-        e.target.remove(); // Elimina el elemento de la pantalla
-        
-        tags = tags.filter(tag => tag !== e.target.textContent) // Elimina el elemento del arreglo
+    function eliminarTag(e) {
+      e.target.remove(); // Elimina el elemento de la pantalla
 
+      tags = tags.filter((tag) => tag !== e.target.textContent); // Elimina el elemento del arreglo
     }
 
     /* FUNCIÓN PARA ACTUALIZAR EL CAMPO OCULTO */
