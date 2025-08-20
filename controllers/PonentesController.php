@@ -74,7 +74,8 @@ class PonentesController
         $router->render('admin/ponentes/crear', [
             'titulo' => 'Regisrar conferencista',
             'ponente' => $ponente,
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'redes' => json_decode($ponente->redes)
         ]);
     }
 
@@ -106,7 +107,8 @@ class PonentesController
         $router->render('admin/ponentes/editar', [
             'titulo' => "Editar registro",
             'ponente' => $ponente,
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'redes' => json_decode($ponente->redes)
         ]);
     }
 }
