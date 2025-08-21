@@ -39,20 +39,21 @@
                             <?php echo $ponente->ciudad . ", " . $ponente->pais; ?>
                         </td>
 
-                        <form action="" class="table__formulario">
-                            <!-- Editar al ponente -->
-                            <td class="table__td--acciones">
-                                <a class="table__accion table__accion--editar" href="/admin/ponentes/editar?id=<?php echo $ponente->id; ?>">
-                                    <fa-user-pen class="fa-solid fa-user-pen">
-                                        Editar
-                                </a>
 
-                                <!-- Eliminar al ponente -->
+                        <!-- Editar al ponente -->
+                        <td class="table__td--acciones">
+                            <a class="table__accion table__accion--editar" href="/admin/ponentes/editar?id=<?php echo $ponente->id; ?>">
+                                <fa-user-pen class="fa-solid fa-user-pen">
+                                    Editar
+                            </a>
 
+                            <!-- Eliminar al ponente -->
+                            <form action="/admin/ponentes/eliminar" class="table__formulario" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $ponente->id; ?>">
                                 <button class="table__accion table__accion--eliminar" type="submit">
                                     <i class="fa-solid fa-circle-xmark"></i>
                                     Eliminar</button>
-                        </form>
+                            </form>
                         </td>
                     </tr>
                 <?php } ?>
