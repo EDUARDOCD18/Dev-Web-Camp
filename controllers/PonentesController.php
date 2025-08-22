@@ -14,6 +14,13 @@ class PonentesController
     {
         $ponentes = Ponente::all();
         # debuguear($ponentes);
+        # debuguear(is_auth());
+        # debuguear(is_admin());
+
+        // Validar que el usuaruio sea un admin
+        if (!is_admin()) {
+            header('Location /login');
+        }
 
         $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes / Conferencistas',
@@ -27,7 +34,17 @@ class PonentesController
         $alertas = [];
         $ponente = new Ponente;
 
+        // Validar que el usuaruio sea un admin
+        if (!is_admin()) {
+            header('Location /login');
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Validar que el usuaruio sea un admin
+            if (!is_admin()) {
+                header('Location /login');
+            }
 
             # Leer imagen
             if (!empty($_FILES['imagen']['tmp_name'])) {
@@ -83,6 +100,11 @@ class PonentesController
     {
 
         $alertas = [];
+
+        // Validar que el usuaruio sea un admin
+        if (!is_admin()) {
+            header('Location /login');
+        }
         // Validar el ID
         $id = $_GET['id'];
         $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -102,7 +124,10 @@ class PonentesController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-
+            // Validar que el usuaruio sea un admin
+            if (!is_admin()) {
+                header('Location /login');
+            }
 
             if (!empty($_FILES['imagen']['tmp_name'])) {
 
@@ -152,6 +177,12 @@ class PonentesController
     public static function eliminar()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Validar que el usuaruio sea un admin
+            if (!is_admin()) {
+                header('Location /login');
+            }
+
             $id = $_POST['id'];
             $ponente = Ponente::find($id);
 
