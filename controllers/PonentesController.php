@@ -24,11 +24,14 @@ class PonentesController
         # debuguear($pagina_actual);
 
         $registros_por_pagina = 10;
+
+        $total = Ponente::total();
         $total_registros = 1;
 
         $paginacion = new Paginacion($pagina_actual, $registros_por_pagina, $total_registros);
 
-        debuguear($paginacion);
+        # debuguear($paginacion);
+        # debuguear($total);
 
         $ponentes = Ponente::all();
         # debuguear($ponentes);
