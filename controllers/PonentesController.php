@@ -30,6 +30,7 @@ class PonentesController
 
         $paginacion = new Paginacion($pagina_actual, $registros_por_pagina, $total_registros);
 
+        debuguear($paginacion->pagina_siguiente());
         # debuguear($paginacion);
         # debuguear($total);
 
