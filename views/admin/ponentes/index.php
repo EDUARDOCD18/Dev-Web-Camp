@@ -18,6 +18,7 @@
             <!-- Cabecera de la tabla -->
             <thead class="table__thead">
                 <tr>
+                    <th class="table_th" scope="col">ID</th>
                     <th class="table_th" scope="col">Nombre</th>
                     <th class="table_th" scope="col">Ubicación</th>
                     <th class="table_th" scope="col"></th>
@@ -28,6 +29,11 @@
             <tbody class="table__tbody">
                 <?php foreach ($ponentes as $ponente) { ?>
                     <tr class="table__tr">
+
+                        <!-- ID del ponente -->
+                        <td class="table__td">
+                            <?php echo $ponente->id; ?>
+                        </td>
 
                         <!-- Nombre y apellido del ponente -->
                         <td class="table__td">
