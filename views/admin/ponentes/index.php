@@ -64,3 +64,5 @@
         <p class="text-center">Sin registros</p>
     <?php } ?>
 </div>
+
+<?php echo $paginacion; ?>

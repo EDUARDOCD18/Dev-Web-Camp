@@ -21,23 +21,13 @@ class PonentesController
             header('Location: /admin/ponentes?page=1');
         }
 
-        # debuguear($pagina_actual);
-
-        $registros_por_pagina = 10;
+        $registros_por_pagina = 4;
 
         $total = Ponente::total();
-        $total_registros = 1;
 
-        $paginacion = new Paginacion($pagina_actual, $registros_por_pagina, $total_registros);
-
-        debuguear($paginacion->pagina_siguiente());
-        # debuguear($paginacion);
-        # debuguear($total);
+        $paginacion = new Paginacion($pagina_actual, $registros_por_pagina, $total);
 
         $ponentes = Ponente::all();
-        # debuguear($ponentes);
-        # debuguear(is_auth());
-        # debuguear(is_admin());
 
         // Validar que el usuaruio sea un admin
         if (!is_admin()) {
@@ -46,7 +36,8 @@ class PonentesController
 
         $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes / Conferencistas',
-            'ponentes' => $ponentes
+            'ponentes' => $ponentes,
+            'paginacion' => $paginacion->paginacion()
         ]);
     }
 
