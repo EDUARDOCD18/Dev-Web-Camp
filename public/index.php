@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once __DIR__ . '/../includes/app.php';
 
@@ -51,7 +51,17 @@ $router->post('/admin/ponentes/editar', [PonentesController::class, 'editar']);
 #Eliminar a un ponente
 $router->post('/admin/ponentes/eliminar', [PonentesController::class, 'eliminar']);
 
+/* EVENTOS  */
 $router->get('/admin/eventos', [EventosController::class, 'index']);
+
+# Crear un evento
+$router->get('/admin/eventos/crear', [EventosController::class, 'crear']);
+$router->post('/admin/eventos/crear', [EventosController::class, 'crear']);
+
+# Editar un evento
+$router->get('/admin/eventos/editar', [EventosController::class, 'editar']);
+$router->post('/admin/eventos/editar', [EventosController::class, 'editar']);
+
 $router->get('/admin/registrados', [RegistradosController::class, 'index']);
 $router->get('/admin/regalos', [RegalosController::class, 'index']);
 
