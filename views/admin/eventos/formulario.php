@@ -8,9 +8,21 @@
     </div>
 
     <!-- Descripción del evento -->
-     <div class="formulario__campo">
+    <div class="formulario__campo">
         <label for="descripcion" class="formulario__label">Descripción</label>
 
         <textarea class="formulario__input" id="descripcion" name="descripcion" placeholder="Descripción del evento" rows="8"></textarea>
-     </div>
+    </div>
+
+    <!-- Selección de categoría -->
+    <div class="formulario__campo">
+        <label for="categoria" class="formulario__label">Categoría o tipo de evento</label>
+
+        <select name="categoria__id" class="formulario__select" id="categoria">
+            <option value="">-- SELECCIONAR -- </option>
+            <?php foreach ($categorias as $categoria) { ?>
+                <option value="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre; ?></option>
+            <?php } ?>
+        </select>
+    </div>
 </fieldset>
