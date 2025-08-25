@@ -25,4 +25,20 @@
             <?php } ?>
         </select>
     </div>
+
+    <!-- Día del evento -->
+    <div class="formulario__campo">
+        <label class="formulario__label">Selecciona el día:</label>
+
+        <div class="formulario__radio">
+            <?php foreach ($dias as $dia) { ?>
+                <div>
+                    <label for="<?php strtolower($dia->nomnbre); ?>"><?php echo $dia->nombre; ?></label>
+
+                    <input type="radio" id="<?php strtolower($dia->nombre); ?>" name="dia" value="<?php echo $dia->id; ?>">
+
+                </div>
+            <?php } ?>
+        </div>
+    </div>
 </fieldset>
