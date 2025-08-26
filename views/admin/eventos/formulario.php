@@ -12,18 +12,22 @@
     <div class="formulario__campo">
         <label for="descripcion" class="formulario__label">Descripción</label>
 
-        <textarea class="formulario__input" id="descripcion" name="descripcion" placeholder="Descripción del evento" rows="8"></textarea>
+        <textarea class="formulario__input" id="descripcion" name="descripcion" placeholder="Descripción del evento" rows="8"><?php echo $evento->descripcion; ?></textarea>
     </div>
 
     <!-- Selección de categoría -->
     <div class="formulario__campo">
         <label for="categoria" class="formulario__label">Categoría o tipo de evento</label>
 
-        <select name="categoria__id" class="formulario__select" id="categoria">
-            <option value="">-- SELECCIONAR -- </option>
-            <?php foreach ($categorias as $categoria) { ?>
-                <option value="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre; ?></option>
-            <?php } ?>
+        <select name="categoria_id" id="categoria" class="formulario__select">
+            <option value="" selected disabled class="formulario__option">&mdash;&ThickSpace;Seleccionar&ThickSpace;&mdash;</option>
+            <?php foreach ($categorias as $categoria) : ?>
+                <?php if ($evento->categoria_id === $categoria->id) : ?>
+                    <option value="<?php echo $categoria->id; ?>" class="formulario__option" selected><?php echo $categoria->nombre; ?></option>
+                <?php elseif ($evento->categoria_id !== $categoria->id) : ?>
+                    <option value="<?php echo $categoria->id; ?>" class="formulario__option"><?php echo $categoria->nombre; ?></option>
+                <?php endif; ?>
+            <?php endforeach; ?>
         </select>
     </div>
 
@@ -69,7 +73,7 @@
 
     <!-- Lugares disponibles -->
     <div class="formulario__campo">
-        <label for="disponibles" class="formulario__label">Ponente:</label>
-        <input type="number" min="1" class="formulario__input" id="disponibles" placeholder="Ejemplo: 20">
+        <label for="disponibles" class="formulario__label">Lugares Disponibles</label>
+        <input type="number" min="1" class="formulario__input" id="disponibles" name="disponibles" placeholder="Ej. 20" value="<?php echo $evento->disponibles; ?>">
     </div>
 </fieldset>
