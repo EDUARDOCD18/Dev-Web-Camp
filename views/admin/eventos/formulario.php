@@ -1,3 +1,4 @@
+<!-- INFORMACIÓN DEL EVENTO -->
 <fieldset class="formulario_fieldset">
     <legend class="formulario__legend">Información Evento</legend>
 
@@ -54,4 +55,21 @@
     </div>
 
 
+</fieldset>
+
+<!-- INFORMACIÓN DEL PONENTE -->
+<fieldset class="formulario__fieldset">
+    <legend class="formulario__legend">Información extra</legend>
+
+    <!-- Ponente -->
+    <div class="formulario__campo">
+        <label for="ponentes" class="formulario__label">Ponente:</label>
+        <input type="text" class="formulario__input" id="ponentes" placeholder="Buscar ponente">
+    </div>
+
+    <!-- Lugares disponibles -->
+    <div class="formulario__campo">
+        <label for="disponibles" class="formulario__label">Ponente:</label>
+        <input type="number" min="1" class="formulario__input" id="disponibles" placeholder="Ejemplo: 20">
+    </div>
 </fieldset>
