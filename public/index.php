@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../includes/app.php';
 
 use MVC\Router;
+use Controllers\APIEventos;
 use Controllers\AuthController;
 use Controllers\DashboardController;
 use Controllers\EventosController;
@@ -57,6 +58,9 @@ $router->get('/admin/eventos', [EventosController::class, 'index']);
 # Crear un evento
 $router->get('/admin/eventos/crear', [EventosController::class, 'crear']);
 $router->post('/admin/eventos/crear', [EventosController::class, 'crear']);
+
+# API para las horas de los eventos
+$router->get('/api/eventos-horario', [APIEventos::class, 'index']);
 
 # Editar un evento
 $router->get('/admin/eventos/editar', [EventosController::class, 'editar']);
