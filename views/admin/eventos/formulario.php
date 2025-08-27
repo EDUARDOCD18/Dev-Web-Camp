@@ -45,6 +45,8 @@
                 </div>
             <?php } ?>
         </div>
+
+        <input type="hidden" name="dia_id" value="<?php echo $evento->dia_id; ?>">
     </div>
 
     <!-- Horas del evento -->
