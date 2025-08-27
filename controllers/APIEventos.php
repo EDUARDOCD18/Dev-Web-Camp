@@ -17,8 +17,11 @@ class APIEventos
         if (!$dia_id || !$categoria_id) {
             echo json_encode([]);
         }
-        
+
         /*  Consultar la base de datos */
-        $eventos = EventoHorario::where('dia_id', $dia_id);
+        $eventos = EventoHorario::whereArray(['dia_id' => $dia_id, 'categoria_id' => $categoria_id]);
+
+        echo json_encode($eventos);
+
     }
 }

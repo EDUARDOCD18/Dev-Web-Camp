@@ -148,7 +148,7 @@ class ActiveRecord
         return $resultado;
     }
 
-    // Busqueda Where con Columna 
+    // Busqueda Where con varias opciones
     public static function where($columna, $valor)
     {
         $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor'";
@@ -182,6 +182,7 @@ class ActiveRecord
                 $query .= " $key = '$value' AND ";
             }
         }
+        # echo $query;
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
