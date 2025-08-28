@@ -21,6 +21,10 @@
     &:hover,
     &:focus {
       cursor: pointer;
+    }
+
+    &--seleccionada {
+      @extend .horas__hora;
       color: v.$blanco;
       background-color: v.$azul;
     }

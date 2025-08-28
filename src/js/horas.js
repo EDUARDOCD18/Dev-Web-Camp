@@ -52,8 +52,19 @@
 
     // Obtener la hora seleccionada
     function seleccionarHora(e) {
-        inputHiddenHora.value = e.target.dataset.horaId;
-      console.log(inputHiddenHora);
+      //Deshabilitar la hora seleccionada
+      const horaPrevia = document.querySelector(".horas__hora--seleccionada");
+
+      if (horaPrevia) {
+        horaPrevia.classList.remove("horas__hora--seleccionada");
+
+      }
+
+      // Agregar la clase de seleccionado
+      e.target.classList.add("horas__hora--seleccionada");
+
+      inputHiddenHora.value = e.target.dataset.horaId;
+      // console.log(inputHiddenHora);
     }
   }
 })();
