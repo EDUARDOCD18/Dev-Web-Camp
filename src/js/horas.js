@@ -10,6 +10,7 @@
     const categoria = document.querySelector("[name=categoria_id");
     const dia = document.querySelectorAll('[name="dia"]');
     const inputHiddenDia = document.querySelector('[name="dia_id"]');
+    const inputHiddenHora = document.querySelector('[name="hora_id"]');
     // console.log(dias);
 
     categoria.addEventListener("change", terminoBusqueda);
@@ -32,7 +33,7 @@
       const { dia, categoria_id } = busqueda;
       const url = `/api/eventos-horario?dia_id=${dia}&categoria_id=${categoria_id}`;
       const resultado = await fetch(url);
-      console.log(resultado);
+      // console.log(resultado);
       const eventos = await resultado.json();
       //console.log(url);
       // console.log(eventos);
@@ -40,8 +41,19 @@
       obtenerHorasDisponibles();
     }
 
-    function obtenerHorasDispobibles(){
-        
+    // Obtener las horas disponibles
+    function obtenerHorasDisponibles() {
+      const horasDisponibles = document.querySelectorAll("#horas li");
+
+      horasDisponibles.forEach((hora) =>
+        hora.addEventListener("click", seleccionarHora)
+      );
+    }
+
+    // Obtener la hora seleccionada
+    function seleccionarHora(e) {
+        inputHiddenHora.value = e.target.dataset.horaId;
+      console.log(inputHiddenHora);
     }
   }
 })();
