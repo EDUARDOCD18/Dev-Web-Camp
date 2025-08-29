@@ -35,14 +35,23 @@
       const resultado = await fetch(url);
       // console.log(resultado);
       const eventos = await resultado.json();
-      //console.log(url);
+      // console.log(url);
       // console.log(eventos);
 
-      obtenerHorasDisponibles();
+      obtenerHorasDisponibles(eventos);
     }
 
     // Obtener las horas disponibles
-    function obtenerHorasDisponibles() {
+    function obtenerHorasDisponibles(eventos) {
+      // Comprobar eventos ya tomados, y quitar la variable de deshabilitado
+      const horasTomadas = eventos.map((evento) => evento.hora_id);
+      const listadoHoras = document.querySelectorAll("#horas li");
+   /*    const resultado = listadoHoras.filter((li) =>
+        horasTomadas.includes(li.dataset.horaId)
+      ); */
+
+      console.log(resultado);
+
       const horasDisponibles = document.querySelectorAll("#horas li");
 
       horasDisponibles.forEach((hora) =>
@@ -57,7 +66,6 @@
 
       if (horaPrevia) {
         horaPrevia.classList.remove("horas__hora--seleccionada");
-
       }
 
       // Agregar la clase de seleccionado

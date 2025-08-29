@@ -28,5 +28,16 @@
       color: v.$blanco;
       background-color: v.$azul;
     }
+
+    &--deshabilitada {
+      @extend .horas__hora;
+      border: solid 1px v.$gris;
+      color: v.$gris;
+      opacity: 0.5;
+
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
   }
 }
