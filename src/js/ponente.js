@@ -61,7 +61,7 @@
           ponenteHTML.dataset.ponenteId = ponente.id;
           ponenteHTML.onclick = seleccionarPonente;
 
-          // Añadir al DOM
+          // Añadir al  DOM
           listadoPonentes.appendChild(ponenteHTML);
         });
       } else {
