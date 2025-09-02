@@ -73,9 +73,8 @@
         <label for="ponentes" class="formulario__label">Ponente:</label>
         <input type="text" class="formulario__input" id="ponentes" placeholder="Buscar ponente">
 
-        <ul id="listado-ponentes" class="listado-ponentes">
-            
-        </ul>
+        <ul id="listado-ponentes" class="listado-ponentes"></ul>
+        <input type="hidden" name="ponente_id" value="">
     </div>
 
     <!-- Lugares disponibles -->
