@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Model\Categoria;
 use Model\Dia;
+use Classes\Paginacion;
 use Model\evento;
 use Model\Hora;
 use MVC\Router;
@@ -14,8 +15,23 @@ class EventosController
     /* Método principal */
     public static function index(Router $router)
     {
+        $pagina_actual = $_GET['page'];
+        $pagina_actual = filter_var($pagina_actual, FILTER_VALIDATE_INT);
+
+        if (!$pagina_actual || $pagina_actual < 1) {
+            header('Location: /admin/eventos?page=1');
+        }
+
+        $por_pagina = 10;
+        $total_eventos = Evento::total();
+        $paginacion = new Paginacion($pagina_actual, $por_pagina, $total_eventos);
+
+        $eventos = Evento::paginar($por_pagina, $paginacion->offset());
+
         $router->render('admin/eventos/index', [
             'titulo' => 'Conferencias y Workshops',
+            'eventos' => $eventos,
+            'paginacion' => $paginacion->paginacion()
         ]);
     }
 
