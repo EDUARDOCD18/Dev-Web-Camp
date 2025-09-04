@@ -41,6 +41,11 @@
                         <td class="table__td">
                             <?php echo $evento->nombre; ?>
                         </td>
+
+                        <!-- Categoria del evento -->
+                        <td class="table__td">
+                            <?php echo $evento->categoria->nombre; ?>
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>

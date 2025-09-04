@@ -28,6 +28,11 @@ class EventosController
 
         $eventos = Evento::paginar($por_pagina, $paginacion->offset());
 
+        foreach ($eventos as $evento) {
+            $evento->categoria = Categoria::find($evento->categoria_id);
+        }
+
+        # debuguear($eventos);
         $router->render('admin/eventos/index', [
             'titulo' => 'Conferencias y Workshops',
             'eventos' => $eventos,

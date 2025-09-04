@@ -15,7 +15,7 @@ class evento extends ActiveRecord
     public $dia_id;
     public $hora_id;
     public $ponente_id;
-
+    public $categoria;
     public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;
