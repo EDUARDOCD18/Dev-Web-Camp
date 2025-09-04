@@ -18,7 +18,6 @@
             <!-- Cabecera de la tabla -->
             <thead class="table__thead">
                 <tr>
-                    <th class="table_th" scope="col">ID</th>
                     <th class="table_th" scope="col">Evento</th>
                     <th class="table_th" scope="col">Categoría</th>
                     <th class="table_th" scope="col">Día y hora</th>
@@ -33,9 +32,9 @@
                     <tr class="table__tr">
 
                         <!-- ID del evento -->
-                        <td class="table__td">
-                            <?php echo $evento->id; ?>
-                        </td>
+                        <!--  <td class="table__td">
+                             <?php echo $evento->id; ?>
+                        </td> -->
 
                         <!-- Nombre del evento -->
                         <td class="table__td">
@@ -46,6 +45,17 @@
                         <td class="table__td">
                             <?php echo $evento->categoria->nombre; ?>
                         </td>
+
+                        <!-- Día y hora del evento -->
+                        <td class="table__td">
+                            <?php echo $evento->dia->nombre . ", " . $evento->hora->hora; ?>
+                        </td>
+
+                        <!-- Ponente del evento -->
+                        <td class="table__td">
+                            <?php echo $evento->ponente->nombre ." " . $evento->ponente->apellido; ?>
+                        </td>
+
                     </tr>
                 <?php } ?>
             </tbody>
