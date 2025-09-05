@@ -81,4 +81,48 @@ class EventosController
             'evento' => $evento
         ]);
     }
+
+    /* Método para editar un nuevo evento */
+    public static function editar(Router $router)
+    {
+
+        $alertas = [];
+        $id = $_GET['id'];
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        if (!$id) header('Location: /admin/eventos');
+
+
+        $categoria = Categoria::all('ASC');
+        $dias = Dia::all('ASC');
+        $horas = Hora::all('ASC');
+
+        $evento = Evento::find($id);
+        if (!$evento) header('Location: /admin/eventos');
+
+        # debuguear($categoria);
+        # debuguear($dias);
+        # debuguear($horas);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $evento->sincronizar($_POST);
+            $alertas = $evento->validar();
+
+            if (empty($alertas)) {
+                // Guardar el evento
+                $resultado = $evento->guardar();
+                if ($resultado) {
+                    header('Location: /admin/eventos');
+                }
+            }
+        }
+
+        $router->render('admin/eventos/editar', [
+            'titulo' => 'Editar Evento',
+            'alertas' => $alertas,
+            'categorias' => $categoria,
+            'dias' => $dias,
+            'horas' => $horas,
+            'evento' => $evento
+        ]);
+    }
 }

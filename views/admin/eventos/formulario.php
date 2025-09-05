@@ -40,7 +40,7 @@
                 <div>
                     <label for="<?php strtolower($dia->nomnbre); ?>"><?php echo $dia->nombre; ?></label>
 
-                    <input type="radio" id="<?php strtolower($dia->nombre); ?>" name="dia" value="<?php echo $dia->id; ?>">
+                    <input type="radio" id="<?php strtolower($dia->nombre); ?>" name="dia" value="<?php echo $dia->id; ?>" <?php echo ($evento->dia_id === $dia->id) ? 'checked' : '' ?>>
 
                 </div>
             <?php } ?>
@@ -58,7 +58,7 @@
                 <li data-hora-id="<?php echo $hora->id; ?>" class="horas__hora horas__hora--deshabilitada"><?php echo $hora->hora; ?></li>
             <?php  } ?>
         </ul>
-        <input type="hidden" name="hora_id">
+        <input type="hidden" name="hora_id" value="<?php echo $evento->hora_id; ?>">
     </div>
 
 
