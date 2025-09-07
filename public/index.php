@@ -63,6 +63,7 @@ $router->post('/admin/eventos/crear', [EventosController::class, 'crear']);
 # API para las horas de los eventos
 $router->get('/api/eventos-horario', [APIEventos::class, 'index']);
 $router->get('/api/ponentes', [APIPonentes::class, 'index']);
+$router->get('/api/ponente', [APIPonentes::class, 'ponente']);
 
 # Editar un evento
 $router->get('/admin/eventos/editar', [EventosController::class, 'editar']);
