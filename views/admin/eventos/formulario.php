@@ -59,6 +59,18 @@
         <input type="hidden" name="dia_id" value="<?php echo $evento->dia_id; ?>">
     </div>
 
+        <!-- Horas del evento -->
+    <div id="horas" class="formulario__campo">
+        <div class="formulario__label">Seleccionar Hora</div>
+
+        <ul class="horas">
+            <?php foreach ($horas as $hora) {  ?>
+                <li data-hora-id="<?php echo $hora->id; ?>" class="horas__hora horas__hora--deshabilitada"><?php echo $hora->hora; ?></li>
+            <?php  } ?>
+        </ul>
+        <input type="hidden" name="hora_id" value="<?php echo $evento->hora_id; ?>">
+    </div>
+
     
 </fieldset>
 

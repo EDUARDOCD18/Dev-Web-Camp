@@ -5,7 +5,7 @@ namespace Controllers;
 use Model\Categoria;
 use Model\Dia;
 use Classes\Paginacion;
-use Model\evento;
+use Model\Evento;
 use Model\Hora;
 use Model\Ponente;
 use MVC\Router;
@@ -16,6 +16,11 @@ class EventosController
     /* Método principal */
     public static function index(Router $router)
     {
+        // Validar que el usuaruio sea un admin
+        if (!is_admin()) {
+            header('Location /login');
+        }
+        
         $pagina_actual = $_GET['page'];
         $pagina_actual = filter_var($pagina_actual, FILTER_VALIDATE_INT);
 
@@ -60,6 +65,12 @@ class EventosController
         # debuguear($horas);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Validar que el usuaruio sea un admin
+            if (!is_admin()) {
+                header('Location /login');
+            }
+
             $evento->sincronizar($_POST);
             $alertas = $evento->validar();
 
@@ -86,6 +97,11 @@ class EventosController
     public static function editar(Router $router)
     {
 
+        // Validar que el usuaruio sea un admin
+        if (!is_admin()) {
+            header('Location /login');
+        }
+
         $alertas = [];
         $id = $_GET['id'];
         $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -104,6 +120,12 @@ class EventosController
         # debuguear($horas);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Validar que el usuaruio sea un admin
+            if (!is_admin()) {
+                header('Location /login');
+            }
+
             $evento->sincronizar($_POST);
             $alertas = $evento->validar();
 
@@ -124,5 +146,31 @@ class EventosController
             'horas' => $horas,
             'evento' => $evento
         ]);
+    }
+
+    # Método para eliminar un evento
+    public static function eliminar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Validar que el usuaruio sea un admin
+            if (!is_admin()) {
+                header('Location /login');
+            }
+
+            $id = $_POST['id'];
+            $evento = Evento::find($id);
+
+            if (isset($evento)) {
+                header('Location: /admin/eventos');
+            }
+
+            $resultado = $evento->eliminar();
+            if ($resultado) {
+                header('Location: /admin/eventos');
+            }
+
+            # debuguear($ponente);
+        }
     }
 }
