@@ -2,6 +2,11 @@
 
 namespace Controllers;
 
+use Model\Categoria;
+use Model\dia;
+use Model\Evento;
+use Model\hora;
+use Model\Ponente;
 use MVC\Router;
 
 class PaginasController
@@ -29,6 +34,46 @@ class PaginasController
 
     public static function conferencias(Router $router)
     {
+
+        $eventos = Evento::ordenar('hora_id', 'ASC');
+        $eventos_formateados = [];
+
+        /* Iterar en las conferencias del viernes */
+        foreach ($eventos as $evento) {
+            $evento->categoria = Categoria::find($evento->categoria_id);
+            $evento->dia = dia::find($evento->dia_id);
+            $evento->hora = hora::find($evento->hora_id);
+            $evento->ponente = Ponente::find($evento->ponente_id);
+
+            if ($evento->dia_id === "1" && $evento->categoria_id === "1") {
+                $eventos_formateados['conferencias_v'][] = $evento;
+            }
+        }
+
+        /* Iterar en las conferencias del sábado */
+        foreach ($eventos as $evento) {
+            if ($evento->dia_id === "2" && $evento->categoria_id === "1") {
+                $eventos_formateados['conferencias_s'][] = $evento;
+            }
+        }
+
+        /* Iterar en las Workshops del viernes */
+        foreach ($eventos as $evento) {
+            if ($evento->dia_id === "1" && $evento->categoria_id === "2") {
+                $eventos_formateados['conferencias_v'][] = $evento;
+            }
+        }
+
+        /* Iterar en las Workshops del sábado */
+        foreach ($eventos as $evento) {
+            if ($evento->dia_id === "2" && $evento->categoria_id === "2") {
+                $eventos_formateados['conferencias_s'][] = $evento;
+            }
+        }
+
+        # debuguear($eventos);
+        debuguear($eventos_formateados);
+
         $router->render('paginas/conferencias', [
             'titulo' => 'Conferencias & Workshops'
         ]);
