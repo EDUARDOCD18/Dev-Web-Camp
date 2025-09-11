@@ -60,22 +60,23 @@ class PaginasController
         /* Iterar en las Workshops del viernes */
         foreach ($eventos as $evento) {
             if ($evento->dia_id === "1" && $evento->categoria_id === "2") {
-                $eventos_formateados['conferencias_v'][] = $evento;
+                $eventos_formateados['workshops_v'][] = $evento;
             }
         }
 
         /* Iterar en las Workshops del sábado */
         foreach ($eventos as $evento) {
             if ($evento->dia_id === "2" && $evento->categoria_id === "2") {
-                $eventos_formateados['conferencias_s'][] = $evento;
+                $eventos_formateados['workshops_s'][] = $evento;
             }
         }
 
         # debuguear($eventos);
-        debuguear($eventos_formateados);
+        # debuguear($eventos_formateados);
 
         $router->render('paginas/conferencias', [
-            'titulo' => 'Conferencias & Workshops'
+            'titulo' => 'Conferencias & Workshops',
+            'eventos' => $eventos_formateados
         ]);
     }
 }
