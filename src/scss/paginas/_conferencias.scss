@@ -32,10 +32,25 @@
     }
   }
 
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: rgba(v.$blanco, 0.5);
+  }
+
   /* evento */
   .evento {
     &__hora {
       font-weight: v.$bold;
+    }
+
+    &__nombre {
+      font-size: 2rem;
+      margin: 0;
+      font-size: 1.6rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     &__informacion {
