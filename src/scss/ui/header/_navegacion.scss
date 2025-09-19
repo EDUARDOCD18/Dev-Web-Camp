@@ -19,6 +19,7 @@
     font-weight: v.$black;
     text-align: center;
 
+    &--actual,
     &:hover,
     &:focus {
       background-color: v.$blanco;
