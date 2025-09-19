@@ -13,8 +13,53 @@ class PaginasController
 {
     public static function index(Router $router)
     {
+        $eventos = Evento::ordenar('hora_id', 'ASC');
+        $eventos_formateados = [];
+
+        /* Iterar en las conferencias del viernes */
+        foreach ($eventos as $evento) {
+            $evento->categoria = Categoria::find($evento->categoria_id);
+            $evento->dia = dia::find($evento->dia_id);
+            $evento->hora = hora::find($evento->hora_id);
+            $evento->ponente = Ponente::find($evento->ponente_id);
+
+            if ($evento->dia_id === "1" && $evento->categoria_id === "1") {
+                $eventos_formateados['conferencias_v'][] = $evento;
+            }
+        }
+
+        /* Iterar en las conferencias del sábado */
+        foreach ($eventos as $evento) {
+            if ($evento->dia_id === "2" && $evento->categoria_id === "1") {
+                $eventos_formateados['conferencias_s'][] = $evento;
+            }
+        }
+
+        /* Iterar en las Workshops del viernes */
+        foreach ($eventos as $evento) {
+            if ($evento->dia_id === "1" && $evento->categoria_id === "2") {
+                $eventos_formateados['workshops_v'][] = $evento;
+            }
+        }
+
+        /* Iterar en las Workshops del sábado */
+        foreach ($eventos as $evento) {
+            if ($evento->dia_id === "2" && $evento->categoria_id === "2") {
+                $eventos_formateados['workshops_s'][] = $evento;
+            }
+        }
+
+        // Obtener el total de cada bloque
+        $ponentes = Ponente::total();
+        $conferencias = Evento::total('categoria_id', 1);
+        $workshops = Evento::total('categoria_id', 2);
+
         $router->render('paginas/index', [
-            'titulo' => 'Inicio'
+            'titulo' => 'Inicio',
+            'eventos' => $eventos_formateados,
+            'ponentes' => $ponentes,
+            'conferencias' => $conferencias,
+            'workshops' => $workshops
         ]);
     }
 
