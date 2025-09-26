@@ -34,3 +34,11 @@ function is_admin(): bool
     }
     return isset($_SESSION['admin']) && !empty($_SESSION);
 }
+
+function aos_animacion(): void
+{
+    $afectos = ['fade-up', 'fade-down', 'fade-right', 'fade-left', 'flip-left', 'flip-right', 'flip-up', 'flip-down', 'zoom-in', 'zoom-in-up', 'zoom-in-down', 'zoom-out', 'zoom-out-up', 'zoom-out-down'];
+
+    $efecto = array_rand($afectos, 1);
+    echo ' data-aos="' . $afectos[$efecto] . '" ';
+}

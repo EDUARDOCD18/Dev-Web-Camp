@@ -4,7 +4,7 @@
 
     <div class="paquetes__grid">
         <!-- PASE GRATIS -->
-        <div class="paquete">
+        <div <?php aos_animacion(); ?> class="paquete">
             <h3 class="paquete__nombre">Pase Gratis</h3>
             <ul class="paquete__lista">
                 <li class="paquete__elemento">Acceso virtual a DevWebCamp</li>
@@ -13,7 +13,7 @@
         </div>
 
         <!-- PASE PRESENCIAL -->
-        <div class="paquete">
+        <div <?php aos_animacion(); ?> class="paquete">
             <h3 class="paquete__nombre">Pase Presencial</h3>
             <ul class="paquete__lista">
                 <li class="paquete__elemento">Acceso virtual a DevWebCamp</li>
@@ -27,7 +27,7 @@
         </div>
 
         <!-- PASE VIRTUAL -->
-         <div class="paquete">
+         <div <?php aos_animacion(); ?> class="paquete">
             <h3 class="paquete__nombre">Pase Virtual</h3>
             <ul class="paquete__lista">
                 <li class="paquete__elemento">Acceso virtual a DevWebCamp</li>
