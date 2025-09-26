@@ -13,7 +13,7 @@
             <p class="resumen__texto">Conferencias</p>
         </div>
 
-        <div <?php aos_animacion(); ?> class="resumen__bloque">
+        <div <?php aos_animacion(); ?> class="rñsumen__bloque">
             <p class="resumen__texto resumen__texto--numero"><?php echo $workshops_total; ?></p>
             <p class="resumen__texto">Workshops</p>
         </div>
