@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../includes/app.php';
 
 use Controllers\APIPonentes;
+use Controllers\PaginasController;
 use MVC\Router;
 use Controllers\APIEventos;
 use Controllers\AuthController;
@@ -73,5 +74,12 @@ $router->post('/admin/eventos/eliminar', [EventosController::class, 'eliminar'])
 $router->get('/admin/registrados', [RegistradosController::class, 'index']);
 $router->get('/admin/regalos', [RegalosController::class, 'index']);
 
+
+/* ÁREA PÚBLICA */
+$router->get('/', [PaginasController::class, 'index']);
+$router->get('/devwebcamp', [PaginasController::class, 'evento']);
+$router->get('/paquetes', [PaginasController::class, 'paquetes']);
+$router->get('/workshops-conferencias', [PaginasController::class, 'conferencias']);
+$router->get('/404', [PaginasController::class, 'error']);
 
 $router->comprobarRutas();

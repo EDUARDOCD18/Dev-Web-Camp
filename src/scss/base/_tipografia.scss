@@ -24,3 +24,8 @@ h3 {
   @include m.nombre-pagina;
   margin: 2rem 0;
 }
+
+[class$="__descripcion"] {
+  @include m.decripcion-pagina;
+  margin: 2rem 0;
+}

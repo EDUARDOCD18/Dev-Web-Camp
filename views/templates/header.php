@@ -1,49 +1,44 @@
-<!-- Cabecera -->
 <header class="header">
-    <!-- Contenedor de cabecera -->
     <div class="header__contenedor">
-        <!-- Barra de navegación -->
         <nav class="header__navegacion">
-            <a href="/registro" class="header__enlace">Registro</a>
-            <a href="/login" class="header__enlace">Iniciar Sesión</a>
-        </nav>
-        <!-- Fin barra de nevegación -->
 
-        <!-- Contenido de cabecera -->
+            <?php if(is_auth()) { ?>
+                <a href="<?php echo is_admin() ? '/admin/dashboard' : '/finalizar-registro'; ?>" class="header__enlace">Administrar</a>
+                <form method="POST" action="/logout" class="header__form">
+                    <input type="submit" value="Cerrar Sesión" class="header__submit">
+                </form>
+            <?php } else { ?>
+                <a href="/registro" class="header__enlace">Registro</a>
+                <a href="/login" class="header__enlace">Iniciar Sesión</a>
+            <?php } ?>
+        </nav>
+
         <div class="header__contenido">
             <a href="/">
-                <h1 class="header__logo">&#60;DevWebCamp/></h1>
+                <h1 class="header__logo">
+                    &#60;DevWebCamp />
+                </h1>
             </a>
 
-            <p class="header__texto">Octubre, 4 y 5 - 2025</p>
-            <p class="header__texto header__texto--modalidad">Modalidad: En línea y Presencial</p>
+            <p class="header__texto">Octubre 5-6 - 2023</p>
+            <p class="header__texto header__texto--modalidad">En Línea - Presencial</p>
 
-            <a href="/registro" class="header__boton">Comprar pase</a>
+            <a href="/registro" class="header__boton">Comprar Pase</a>
         </div>
-        <!-- Fin contenido de cabecera -->
     </div>
-    <!-- Fin contenedor cabecera -->
 </header>
-<!-- Fin cabecera -->
-
-<!-- Barra -->
 <div class="barra">
-    <!-- Barra contenido -->
     <div class="barra__contenido">
         <a href="/">
-            <h2 class="barra__logo">&#60;DevWebCamp/></h2>
+            <h2 class="barra__logo">
+                &#60;DevWebCamp />
+            </h2>
         </a>
-
-        <!-- Navegación -->
         <nav class="navegacion">
-            <a href="/devwebcamp" class="navegacion__enlace">Evento</a>
-            <a href="/paquetes" class="navegacion__enlace">Paquetes</a>
-            <a href="/workshop-conferencias" class="navegacion__enlace">Workshop / Conferencias</a>
-            <a href="/registro" class="navegacion__enlace">Comprar Pase</a>
-            <!-- Fin Navegación -->
-
+            <a href="/devwebcamp" class="navegacion__enlace <?php echo pagina_actual('/devwebcamp') ? 'navegacion__enlace--actual' : ''; ?>">Evento</a>
+            <a href="/paquetes" class="navegacion__enlace <?php echo pagina_actual('/paquetes') ? 'navegacion__enlace--actual' : ''; ?>">Paquetes</a>
+            <a href="/workshops-conferencias" class="navegacion__enlace <?php echo pagina_actual('/workshops-conferencias') ? 'navegacion__enlace--actual' : ''; ?>">Workshops / Conferencias</a>
+            <a href="/registro" class="navegacion__enlace <?php echo pagina_actual('/registro') ? 'navegacion__enlace--actual' : ''; ?>">Comprar Pase</a>
         </nav>
     </div>
-    <!-- Fin Barra contenido -->
 </div>
-<!-- Fin barra -->
