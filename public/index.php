@@ -11,6 +11,7 @@ use Controllers\DashboardController;
 use Controllers\EventosController;
 use Controllers\PonentesController;
 use Controllers\RegalosController;
+use Controllers\RegistroController;
 use Controllers\RegistradosController;
 
 $router = new Router();
@@ -73,6 +74,9 @@ $router->post('/admin/eventos/eliminar', [EventosController::class, 'eliminar'])
 
 $router->get('/admin/registrados', [RegistradosController::class, 'index']);
 $router->get('/admin/regalos', [RegalosController::class, 'index']);
+
+# Registro de usuario
+$router->get('/finalizar-registro', [RegistroController::class, 'crear']);
 
 
 /* ÁREA PÚBLICA */
