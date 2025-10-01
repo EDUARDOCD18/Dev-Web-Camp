@@ -77,6 +77,7 @@ $router->get('/admin/regalos', [RegalosController::class, 'index']);
 
 # Registro de usuario
 $router->get('/finalizar-registro', [RegistroController::class, 'crear']);
+$router->post('/finalizar-registro/gratis', [RegistroController::class, 'gratis']);
 
 
 /* ÁREA PÚBLICA */
