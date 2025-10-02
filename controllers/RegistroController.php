@@ -2,11 +2,10 @@
 
 namespace Controllers;
 
-use Classes\Paginacion;
-use Model\Ponente;
+use Model\Paquete;
 use Model\Registro;
+use Model\Usuario;
 use MVC\Router;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class RegistroController
 {
@@ -40,9 +39,38 @@ class RegistroController
             # debuguear($registro);
             $resultado = $registro->guardar();
 
-            if($resultado){
+            if ($resultado) {
                 header('Location: /boleto?id=' . urlencode($token));
             }
         }
+    }
+
+    public static function boleto(Router $router)
+    {
+
+        // Validar la URL
+        $id = $_GET['id'];
+
+        if (!$id || strlen($id) !== 8) {
+            header('Location: /login');
+        }
+
+        // Buscar en la base de datos
+        $registro = Registro::where('token', $id);
+
+        if (!$registro) {
+            header('Location: /login');
+        }
+
+        // Llenar las tablas de referencia
+        $registro->usuario = Usuario::find($registro->usuario_id);
+        $registro->paquete = Paquete::find($registro->paquete_id);
+
+        # debuguear($registro);
+
+        $router->render('registros/boleto', [
+            'titulo' => 'Asistencia a DevWebCamp',
+            'registro' => $registro
+        ]);
     }
 }
