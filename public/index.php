@@ -78,8 +78,11 @@ $router->get('/admin/regalos', [RegalosController::class, 'index']);
 # Registro de usuario
 $router->get('/finalizar-registro', [RegistroController::class, 'crear']);
 
-// Boleot gratis
+// Boleto gratis
 $router->post('/finalizar-registro/gratis', [RegistroController::class, 'gratis']);
+
+// Pagar
+$router->post('/finalizar-registro/pagar', [RegistroController::class, 'pagar']);
 
 // Boleto virtual
 $router->get('/boleto', [RegistroController::class, 'boleto']);
