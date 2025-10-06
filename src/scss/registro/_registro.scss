@@ -49,7 +49,7 @@
     background-color: v.$gris-claro;
     padding: 3rem;
     border-radius: 1rem;
-    
+
   @include m.tablet {
     flex: 0 0 40%;
     position: -webkit-sticky;
@@ -59,5 +59,30 @@
 
   &__heading {
     margin: 0 0 3rem 0;
+  }
+
+  &__evento{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    &:nth-child(even){
+        background-color: darken(v.$gris-claro, 3);
+    }
+  }
+
+  &__nombre{
+    font-size: 2rem;
+    font-weight: v.$bold;
+    margin: 0;
+  }
+
+  &__eliminar{
+    all: unset;
+    color: v.$rojo;
+
+    &:hover{
+      cursor: pointer;
+    }
   }
 }
