@@ -5,7 +5,7 @@ namespace Model;
 class Registro extends ActiveRecord
 {
     protected static $tabla = 'registros';
-    protected static $columnasDB = ['id', 'paquete_id', 'pago_id', 'token', 'usuario_id'];
+    protected static $columnasDB = ['id', 'paquete_id', 'pago_id', 'token', 'usuario_id', 'regalo_id'];
 
     public $id;
     public $paquete_id;
@@ -13,7 +13,8 @@ class Registro extends ActiveRecord
     public $token;
     public $usuario_id;
     public $usuario;
-    public $paquete;
+    public $paquete; 
+    public $regalo_id;
 
     public function __construct($args = [])
     {
@@ -22,5 +23,6 @@ class Registro extends ActiveRecord
         $this->pago_id = $args['pago_id'] ?? '';
         $this->token = $args['token'] ?? '';
         $this->usuario_id = $args['usuario_id'] ?? '';
+        $this->regalo_id = $args['regalo_id'] ?? '';
     }
 }

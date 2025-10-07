@@ -46,9 +46,9 @@
 }
 
 .registro {
-    background-color: v.$gris-claro;
-    padding: 3rem;
-    border-radius: 1rem;
+  background-color: v.$gris-claro;
+  padding: 3rem;
+  border-radius: 1rem;
 
   @include m.tablet {
     flex: 0 0 40%;
@@ -61,28 +61,47 @@
     margin: 0 0 3rem 0;
   }
 
-  &__evento{
+  &__evento {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    &:nth-child(even){
-        background-color: darken(v.$gris-claro, 3);
+    &:nth-child(even) {
+      background-color: darken(v.$gris-claro, 3);
     }
   }
 
-  &__nombre{
+  &__nombre {
     font-size: 2rem;
     font-weight: v.$bold;
     margin: 0;
   }
 
-  &__eliminar{
+  &__eliminar {
     all: unset;
     color: v.$rojo;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
+  }
+
+  &__regalo {
+    margin-top: 3rem;
+  }
+
+  &__label {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: v.$bold;
+    margin-bottom: 1rem;
+  }
+
+  &__select {
+    width: 100%;
+    background-color: v.$blanco;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid v.$gris;
   }
 }
