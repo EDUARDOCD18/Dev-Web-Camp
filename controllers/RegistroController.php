@@ -203,7 +203,7 @@ class RegistroController
                 return;
             }
 
-
+            $eventos_array = [];
             // Validar la disponibilidad de los evento seleccionados
             foreach ($eventos as $evento_id) {
                 $evento = Evento::find($evento_id);
@@ -213,10 +213,16 @@ class RegistroController
                     return;
                 }
 
-                $evento->disponibles -= 1;
-                debuguear($evento);
+                $eventos_array[] = $evento;
             }
 
+            foreach ($eventos_array as $evento_id) {    
+                $evento->disponibles -= 1;
+                $evento->guardar();
+
+                // Almacenar los registros
+                
+            }
         }
 
         $router->render('registros/conferencias', [
