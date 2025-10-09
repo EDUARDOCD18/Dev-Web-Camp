@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Model\EventosRegistros;
 use Model\Paquete;
 use Model\Registro;
 use Model\Usuario;
@@ -27,6 +28,10 @@ class RegistroController
         $registro = Registro::where('usuario_id', $_SESSION['id']);
         if (isset($registro) && $registro->paquete_id === "3") {
             header('Location: /boleto?id=' . urlencode($registro->token));
+        }
+
+        if($registro->paquete_id === "1" || $registro->paquete_id === "1") {
+            header('Location: /finalizar-registro/conferencias');
         }
 
         $router->render('registros/crear', [
@@ -140,6 +145,15 @@ class RegistroController
         $usuario_id = $_SESSION['id'];
         $registro = Registro::where('usuario_id', $usuario_id);
 
+        if ($registro->paquete_id !== "1") {
+            header('Location:/');
+        }
+
+        // Redireccionar a boleto virtual si el usuario ha finalizodo el registro
+        if (isset($registro->regalo_id)) {
+            header('Location: /boleto?id=' . urlencode($registro->token));
+        }
+
         $eventos = Evento::ordenar('hora_id', 'ASC');
         $eventos_formateados = [];
 
@@ -216,13 +230,30 @@ class RegistroController
                 $eventos_array[] = $evento;
             }
 
-            foreach ($eventos_array as $evento_id) {    
+            foreach ($eventos_array as $evento_id) {
                 $evento->disponibles -= 1;
                 $evento->guardar();
 
                 // Almacenar los registros
-                
+                $datos = [
+                    'evento_id' => (int) $evento->id,
+                    'registro_id' => (int) $registro->id
+                ];
+
+                $registro_usuario = new EventosRegistros($datos);
+                $registro_usuario->guardar();
             }
+
+            // Almacenar el regalo
+            $registro->sincronizar(['regalo_id' => (int) $_POST['regalo_id']]);
+            $resultado = $registro->guardar();
+
+            if ($resultado) {
+                echo json_encode(['resultado' => $resultado, 'token' => $registro->token]);
+            } else {
+                echo json_encode(['resultado' => false]);
+            }
+            return;
         }
 
         $router->render('registros/conferencias', [
