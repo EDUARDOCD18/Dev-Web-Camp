@@ -58,7 +58,7 @@
     </div>
 </main>
 
-  <script src="https://www.paypal.com/sdk/js?client-id=Adc6YGqAvfmtD_7WCDB9mf3AidMfM18ZQr49mGkIHEOF8XuFTW7aAMFuB09wVfMsKy54lOoFfpWqL3HS&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AXkAK5b6YQwAkIiUEqdG5UkK-yXWVpq5LFbHV7kmlqUurskH1HPFcApMPRaDfj_zSesX2LeSejTSrrQH&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
 </script>
 
 <script>
@@ -139,6 +139,7 @@
                     datos.append('paquete_id', orderData.purchase_units[0].description);
                     datos.append('pago_id', orderData.purchase_units[0].payments.captures[0].id);
 
+
                     fetch('/finalizar-registro/pagar', {
                             method: 'POST',
                             body: datos
@@ -151,6 +152,7 @@
                         })
 
                 });
+                
             },
 
             onError: function(err) {

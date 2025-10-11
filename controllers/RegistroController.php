@@ -22,16 +22,19 @@ class RegistroController
         // Verificar si la sesión está iniciada
         if (!is_auth()) {
             header('Location: /login');
+            return;
         }
 
         // Verificar si el usuario ya está registrado
         $registro = Registro::where('usuario_id', $_SESSION['id']);
-        if (isset($registro) && $registro->paquete_id === "3") {
+        if (isset($registro) && ($registro->paquete_id === "3" || $registro->paquete_id === "2")) {
             header('Location: /boleto?id=' . urlencode($registro->token));
+            return;
         }
 
-        if($registro->paquete_id === "1" || $registro->paquete_id === "1") {
-            header('Location: /finalizar-registro/conferencias');
+        if (isset($registro) && $registro->paquete_id === "1") {
+            header('Location: /boleto?id=' . urlencode($registro->token));
+            return;
         }
 
         $router->render('registros/crear', [
@@ -44,6 +47,7 @@ class RegistroController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!is_auth()) {
                 header('Location: /login');
+                return;
             }
 
             $registro = Registro::where('usuario_id', $_SESSION['id']);
@@ -136,108 +140,101 @@ class RegistroController
     public static function conferencias(Router $router)
     {
 
-        // Verificar si el usuario está autenticado
         if (!is_auth()) {
             header('Location: /login');
+            return;
         }
 
         // Validar que el usuario tenga el plan presencial
         $usuario_id = $_SESSION['id'];
         $registro = Registro::where('usuario_id', $usuario_id);
 
-        if ($registro->paquete_id !== "1") {
-            header('Location:/');
+        if (isset($registro) && $registro->paquete_id === "2") {
+            header('Location: /boleto?id=' . urlencode($registro->token));
+            return;
         }
 
-        // Redireccionar a boleto virtual si el usuario ha finalizodo el registro
-        if (isset($registro->regalo_id)) {
-            header('Location: /boleto?id=' . urlencode($registro->token));
+        if ($registro->paquete_id !== "1") {
+            header('Location: /');
+            return;
         }
+
+        // Redireccionar a boleto virtual en caso de haber finalizado su registro
+        // if(isset($registro->regalo_id) && $registro->paquete_id === "1") {
+        //     header('Location: /boleto?id=' . urlencode($registro->token));
+        //     return;
+        // }
 
         $eventos = Evento::ordenar('hora_id', 'ASC');
-        $eventos_formateados = [];
 
-        /* Iterar en las conferencias del viernes */
+        $eventos_formateados = [];
         foreach ($eventos as $evento) {
             $evento->categoria = Categoria::find($evento->categoria_id);
-            $evento->dia = dia::find($evento->dia_id);
-            $evento->hora = hora::find($evento->hora_id);
+            $evento->dia = Dia::find($evento->dia_id);
+            $evento->hora = Hora::find($evento->hora_id);
             $evento->ponente = Ponente::find($evento->ponente_id);
 
             if ($evento->dia_id === "1" && $evento->categoria_id === "1") {
                 $eventos_formateados['conferencias_v'][] = $evento;
             }
-        }
 
-        /* Iterar en las conferencias del sábado */
-        foreach ($eventos as $evento) {
             if ($evento->dia_id === "2" && $evento->categoria_id === "1") {
                 $eventos_formateados['conferencias_s'][] = $evento;
             }
-        }
 
-        /* Iterar en las Workshops del viernes */
-        foreach ($eventos as $evento) {
             if ($evento->dia_id === "1" && $evento->categoria_id === "2") {
                 $eventos_formateados['workshops_v'][] = $evento;
             }
-        }
 
-        /* Iterar en las Workshops del sábado */
-        foreach ($eventos as $evento) {
             if ($evento->dia_id === "2" && $evento->categoria_id === "2") {
                 $eventos_formateados['workshops_s'][] = $evento;
             }
         }
 
-        if ($registro->paquete_id !== "1") {
-            header('Location:/');
-        }
-
         $regalos = Regalo::all('ASC');
 
-        // Manejando el registro por medio de POST 
+        // Manejando el registro mediante $_POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Validar que el usuario esté registrado
+
+            // Revisar que el usuario este autenticado
             if (!is_auth()) {
                 header('Location: /login');
+                return;
             }
 
             $eventos = explode(',', $_POST['eventos']);
-
             if (empty($eventos)) {
                 echo json_encode(['resultado' => false]);
                 return;
             }
 
-            // Obtener el registro del usuario
+            // Obtener el registro de usuario
             $registro = Registro::where('usuario_id', $_SESSION['id']);
-            if (!isset($eventos) || $registro->paquete_id !== "1") {
+            if (!isset($registro) || $registro->paquete_id !== "1") {
                 echo json_encode(['resultado' => false]);
                 return;
             }
 
             $eventos_array = [];
-            // Validar la disponibilidad de los evento seleccionados
+            // Validar la disponibilidad de los eventos seleccionados
             foreach ($eventos as $evento_id) {
                 $evento = Evento::find($evento_id);
-
+                // Comprobar que el evento exista
                 if (!isset($evento) || $evento->disponibles === "0") {
                     echo json_encode(['resultado' => false]);
                     return;
                 }
-
                 $eventos_array[] = $evento;
             }
 
-            foreach ($eventos_array as $evento_id) {
+            foreach ($eventos_array as $evento) {
                 $evento->disponibles -= 1;
                 $evento->guardar();
 
-                // Almacenar los registros
+                // Almacenar el registro
                 $datos = [
-                    'evento_id' => (int) $evento->id,
-                    'registro_id' => (int) $registro->id
+                    'evento_id' =>  (int) $evento->id,
+                    'registro_id' => (int)  $registro->id
                 ];
 
                 $registro_usuario = new EventosRegistros($datos);
@@ -245,19 +242,24 @@ class RegistroController
             }
 
             // Almacenar el regalo
-            $registro->sincronizar(['regalo_id' => (int) $_POST['regalo_id']]);
+            $registro->sincronizar(['regalo_id' => $_POST['regalo_id']]);
             $resultado = $registro->guardar();
 
             if ($resultado) {
-                echo json_encode(['resultado' => $resultado, 'token' => $registro->token]);
+                echo json_encode([
+                    'resultado' => $resultado,
+                    'token' => $registro->token
+                ]);
             } else {
                 echo json_encode(['resultado' => false]);
             }
+
             return;
         }
 
-        $router->render('registros/conferencias', [
-            'titulo' => 'Elegir Conferencias & workshops',
+
+        $router->render('registro/conferencias', [
+            'titulo' => 'Elige Workshops y Conferencias',
             'eventos' => $eventos_formateados,
             'regalos' => $regalos
         ]);
