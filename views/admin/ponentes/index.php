@@ -18,10 +18,10 @@
             <!-- Cabecera de la tabla -->
             <thead class="table__thead">
                 <tr>
-                    <th class="table_th" scope="col">ID</th>
-                    <th class="table_th" scope="col">Nombre</th>
-                    <th class="table_th" scope="col">Ubicación</th>
-                    <th class="table_th" scope="col"></th>
+                    <th class="table__th" scope="col">ID</th>
+                    <th class="table__th" scope="col">Nombre</th>
+                    <th class="table__th" scope="col">Ubicación</th>
+                    <th class="table__th" scope="col"></th>
                 </tr>
             </thead>
 

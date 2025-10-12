@@ -18,11 +18,11 @@
             <!-- Cabecera de la tabla -->
             <thead class="table__thead">
                 <tr>
-                    <th class="table_th" scope="col">Evento</th>
-                    <th class="table_th" scope="col">Categoría</th>
-                    <th class="table_th" scope="col">Día y hora</th>
-                    <th class="table_th" scope="col">Ponente</th>
-                    <th class="table_th" scope="col"></th>
+                    <th class="table__th" scope="col">Evento</th>
+                    <th class="table__th" scope="col">Categoría</th>
+                    <th class="table__th" scope="col">Día y hora</th>
+                    <th class="table__th" scope="col">Ponente</th>
+                    <th class="table__th" scope="col"></th>
                 </tr>
             </thead>
 
