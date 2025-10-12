@@ -6,6 +6,7 @@ use Controllers\APIPonentes;
 use Controllers\PaginasController;
 use MVC\Router;
 use Controllers\APIEventos;
+use Controllers\APIRegalos;
 use Controllers\AuthController;
 use Controllers\DashboardController;
 use Controllers\EventosController;
@@ -66,6 +67,7 @@ $router->post('/admin/eventos/crear', [EventosController::class, 'crear']);
 $router->get('/api/eventos-horario', [APIEventos::class, 'index']);
 $router->get('/api/ponentes', [APIPonentes::class, 'index']);
 $router->get('/api/ponente', [APIPonentes::class, 'ponente']);
+$router->get('/api/regalos', [APIRegalos::class, 'index']);
 
 # Editar un evento
 $router->get('/admin/eventos/editar', [EventosController::class, 'editar']);
